@@ -2,6 +2,8 @@ from launch import LaunchDescription
 import os
 from scenario_helpers.simulated_vehicle import create_simulated_vehicle_nodes
 from scenario_helpers.visualizer import create_visualization_nodes
+from launch_ros.actions import Node
+
 
 def generate_launch_description():
     # Get the directory of this launch file
@@ -17,6 +19,12 @@ def generate_launch_description():
             whitelist=["ego_vehicle"],
             asset_folder=map_image_folder,
             use_center_ego=True
+        ),
+        Node(
+            package='simulated_remote_operator',
+            namespace='ego_vehicle',
+            executable='simulated_remote_operator',
+            name='simulated_remote_operator',
         ),
 
         *create_simulated_vehicle_nodes(
