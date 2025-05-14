@@ -9,7 +9,7 @@ def generate_launch_description():
     map_image_folder = os.path.abspath(os.path.join(launch_file_dir, "../assets/maps/"))
     map_folder = os.path.abspath(os.path.join(launch_file_dir, "../assets/tracks/"))
     vehicle_param = os.path.abspath(os.path.join(launch_file_dir, "../assets/vehicle_params/"))
-    map_file = map_folder + "/karlsruhe_ispra.r2sr"
+    map_file = map_folder + "/r2s_urbandrive_ispra.r2sr"
     vehicle_model_file = vehicle_param + "/NGC.json"
 
     return LaunchDescription([
@@ -20,8 +20,8 @@ def generate_launch_description():
         ),
         *create_simulated_vehicle_nodes(
             namespace="ego_vehicle",
-            start_pose=(458493.706, 5430131.5, -0.37),
-            goal_position=(458423.16, 5430167.48),
+            start_pose=(471121.0, 5072569.7, -3.0),
+            goal_position=(470923.8, 5072937.9),
             map_file=map_file,
             model_file=vehicle_model_file,
             controllable=True,
