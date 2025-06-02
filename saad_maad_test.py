@@ -1,6 +1,10 @@
 from launch import LaunchDescription
 from launch_ros.actions import Node
 import os
+import sys
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if base_dir not in sys.path:
+    sys.path.insert(0, base_dir)
 from scenario_helpers.simulated_vehicle import create_simulated_vehicle_nodes
 from scenario_helpers.simulated_infrastructure import create_infrastructure_nodes
 from scenario_helpers.visualizer import create_visualization_nodes
