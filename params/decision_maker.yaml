@@ -1,0 +1,23 @@
+/**:
+  ros__parameters:
+    obstacle_avoidance.static_speed_threshold: 0.5
+    obstacle_avoidance.min_obstacle_ahead_s: 3.0
+    obstacle_avoidance.max_obstacle_ahead_s: 60.0
+
+    obstacle_avoidance.front_clearance: 6.0
+    obstacle_avoidance.rear_clearance: 6.0
+    obstacle_avoidance.lateral_clearance: 0.5
+
+    obstacle_avoidance.ramp_in_length: 12.0
+    obstacle_avoidance.ramp_out_length: 12.0
+    obstacle_avoidance.waypoint_ds: 0.5
+
+    obstacle_avoidance.lane_match_threshold: 1.2
+    obstacle_avoidance.oncoming_lane_threshold: 2.5
+    obstacle_avoidance.oncoming_heading_threshold: 2.2
+
+    obstacle_avoidance.min_overtake_ttc: 6.0
+    obstacle_avoidance.ttc_buffer: 1.5
+    obstacle_avoidance.min_overtake_speed: 2.0
+
+    obstacle_avoidance.wait_stop_margin: 2.0

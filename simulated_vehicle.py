@@ -17,6 +17,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from launch import Action
 from launch_ros.actions import Node
+from pathlib import Path
 
 import os
 import sys
@@ -29,6 +30,17 @@ if base_dir not in sys.path:
 launch_file_dir = os.path.dirname(os.path.realpath(__file__))
 vehicle_parameters_folder = os.path.abspath(os.path.join(launch_file_dir, "../assets/vehicle_params/"))
 maps_folder = os.path.abspath(os.path.join(launch_file_dir, "../assets/tracks/"))
+
+path_shift_params_file = os.path.abspath(
+    os.path.join(launch_file_dir, "../assets/path_shift_params/path_shift_params.yaml")
+)
+
+# #parameters for the decision maker node, can be adapted to be read from a yaml file if needed
+# params_file = os.path.join(
+#     os.path.dirname(os.path.realpath(__file__)),
+#     "params",
+#     "decision_maker.yaml",
+# )
 
 def create_simulated_vehicle(
     namespace: str,
@@ -114,12 +126,27 @@ def create_simulated_vehicle(
             name="decision_maker",
             namespace=namespace,
             parameters=[
+                path_shift_params_file,
                 {"planner_settings_keys": list(planner_params.keys())},
                 {"planner_settings_values": list(planner_params.values())},
                 {"vehicle_model_file": vehicle_parameters_folder + "/" + vehicle_parameters_file},
                 {"v2x_id": v2x_id},
             ],
         ),
+        
+        # Node(
+        #     package="decision_maker",
+        #     executable="decision_maker",
+        #     name="decision_maker",
+        #     namespace=namespace,
+        #     parameters=[
+        #         params_file,
+        #         {"planner_settings_keys": list(planner_params.keys())},
+        #         {"planner_settings_values": list(planner_params.values())},
+        #         {"vehicle_model_file": vehicle_parameters_folder + "/" + vehicle_parameters_file},
+        #         {"v2x_id": v2x_id},
+        #     ],
+        # ),
         Node(
             package="trajectory_tracker",
             executable="trajectory_tracker",
