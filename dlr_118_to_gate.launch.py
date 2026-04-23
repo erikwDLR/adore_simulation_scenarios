@@ -69,15 +69,15 @@ def generate_launch_description():
             visualization_offset=start_position.get_utm_coordinates(),
         ),
         
-        # *create_simulated_vehicle(
-        #     namespace="slow_car",
-        #     #start_pose_utm = Position(lat_long=(52.315838, 10.562684), psi=3.03).get_utm_coordinates(),
-        #     start_pose_utm = Position(lat_long=(52.315829, 10.562819), psi=3.03).get_utm_coordinates(),
-        #     goal_position_utm  = Position(lat_long=(52.314444, 10.561929), psi=0.0).get_utm_coordinates(),
-        #     #goal_position_utm  = Position(lat_long=(52.315829, 10.562819), psi=0.0).get_utm_coordinates(),
-        #     v2x_id=1,
-        #     vehicle_id=99,
-        # ),
+        *create_simulated_vehicle(
+            namespace="slow_car",
+            #start_pose_utm = Position(lat_long=(52.315838, 10.562684), psi=3.03).get_utm_coordinates(),
+            start_pose_utm = Position(lat_long=(52.315829, 10.562819), psi=3.03).get_utm_coordinates(),
+            goal_position_utm  = Position(lat_long=(52.314444, 10.561929), psi=0.0).get_utm_coordinates(),
+            #goal_position_utm  = Position(lat_long=(52.315829, 10.562819), psi=0.0).get_utm_coordinates(),
+            v2x_id=1,
+            vehicle_id=99,
+        ),
         
         # *create_simulated_vehicle(
         #     namespace="ego_vehicle",
@@ -103,14 +103,14 @@ def generate_launch_description():
         #     v2x_id=3,
         # ),
 
-        # *create_simulated_vehicle(
-        #     namespace="simR1",
-        #     start_pose_utm=Position(lat_long=(52.315826, 10.562258), psi=-0.15).get_utm_coordinates(),
-        #     #start_pose_utm=Position(lat_long=(52.315826, 10.562258), psi=0.25).get_utm_coordinates(),
-        #     goal_position_utm=Position(lat_long=(52.315826, 10.562258), psi=0.0).get_utm_coordinates(),
-        #     vehicle_id=4,
-        #     v2x_id=4,
-        # ),
+        *create_simulated_vehicle(
+            namespace="simR1",
+            start_pose_utm=Position(lat_long=(52.315826, 10.562258), psi=-0.15).get_utm_coordinates(),
+            #start_pose_utm=Position(lat_long=(52.315826, 10.562258), psi=0.25).get_utm_coordinates(),
+            goal_position_utm=Position(lat_long=(52.315826, 10.562258), psi=0.0).get_utm_coordinates(),
+            vehicle_id=4,
+            v2x_id=4,
+        ),
 
         # *create_simulated_vehicle(
         #     namespace="simR2",
@@ -120,13 +120,13 @@ def generate_launch_description():
         #     v2x_id=5,
         # ),
 
-        *create_simulated_vehicle(
-            namespace="simR3",
-            start_pose_utm=Position(lat_long=(52.315803, 10.562609), psi=1.5).get_utm_coordinates(),
-            goal_position_utm=Position(lat_long=(52.315803, 10.562609), psi=0.0).get_utm_coordinates(),
-            vehicle_id=6,
-            v2x_id=6,
-        ),
+        # *create_simulated_vehicle(
+        #     namespace="simR3",
+        #     start_pose_utm=Position(lat_long=(52.315803, 10.562609), psi=1.5).get_utm_coordinates(),
+        #     goal_position_utm=Position(lat_long=(52.315803, 10.562609), psi=0.0).get_utm_coordinates(),
+        #     vehicle_id=6,
+        #     v2x_id=6,
+        # ),
 
         # *create_simulated_vehicle(
         #     namespace="slow_car2",
