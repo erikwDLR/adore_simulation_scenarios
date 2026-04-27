@@ -35,12 +35,6 @@ path_shift_params_file = os.path.abspath(
     os.path.join(launch_file_dir, "../assets/path_shift_params/path_shift_params.yaml")
 )
 
-# #parameters for the decision maker node, can be adapted to be read from a yaml file if needed
-# params_file = os.path.join(
-#     os.path.dirname(os.path.realpath(__file__)),
-#     "params",
-#     "decision_maker.yaml",
-# )
 
 def create_simulated_vehicle(
     namespace: str,
@@ -49,7 +43,8 @@ def create_simulated_vehicle(
     vehicle_id: int,
     v2x_id: int,
     vehicle_parameters_file: str = "NGC.json",
-    map_file: str = "de_bs_borders_wfs.r2sr",
+    #map_file: str = "de_bs_borders_wfs.r2sr",
+    map_file: str = "r2s_flightfield_edemissen_26022026_25832.r2sr",
     controllable: bool = True
 ) -> List[Action]:
 
