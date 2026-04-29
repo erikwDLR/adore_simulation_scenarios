@@ -24,6 +24,7 @@ from visualizer import create_visualizer
 
 start_position = Position(lat_long=(52.402773, 10.231041), psi=-3.0)
 goal_position = Position(lat_long=(52.401652, 10.224147), psi=0.0)
+
 #start_position = Position(lat_long=(52.402311, 10.228955), psi=0.0)
 #goal_position = Position(lat_long=(52.402901, 10.231940), psi=0.0)
 
@@ -45,7 +46,10 @@ def generate_launch_description():
         # *create_simulated_vehicle(
         #     namespace="oncoming_vehicle",
         #     start_pose_utm=Position(lat_long=(52.402311, 10.228955), psi=0.0).get_utm_coordinates(),
+        #     #start_pose_utm=Position(lat_long=(52.402251, 10.228955), psi=0.0).get_utm_coordinates(),
         #     goal_position_utm=Position(lat_long=(52.402901, 10.231940), psi=0.0).get_utm_coordinates(),
+        #     #start_pose_utm=Position(lat_long=(52.402773, 10.231041), psi=-3.0).get_utm_coordinates(),
+        #     #goal_position_utm=Position(lat_long=(52.401652, 10.224147), psi=0.0).get_utm_coordinates(),
         #     vehicle_id=99,
         #     v2x_id=1,
         #     vehicle_parameters_file = "NGC.json",
@@ -63,6 +67,8 @@ def generate_launch_description():
         #     namespace="in_lane_right_obstacle",
         #     start_pose_utm=Position(lat_long=(52.402639, 10.230170), psi=0.0).get_utm_coordinates(),
         #     goal_position_utm=Position(lat_long=(52.402639, 10.230170), psi=0.0).get_utm_coordinates(),
+        #     #start_pose_utm=Position(lat_long=(52.402610, 10.230000), psi=0.0).get_utm_coordinates(),
+        #     #goal_position_utm=Position(lat_long=(52.402610, 10.230000), psi=0.0).get_utm_coordinates(),
         #     vehicle_id=6,
         #     v2x_id=6,
         #     vehicle_parameters_file = "obstacle.json",
@@ -95,6 +101,18 @@ def generate_launch_description():
             v2x_id=7,
             vehicle_parameters_file = "obstacle.json",
         ),
+        
+        # *create_simulated_vehicle(
+        #     namespace="early_in_lane_left_obstacle",
+        #     start_pose_utm=Position(lat_long=(52.402637, 10.230300), psi=0.0).get_utm_coordinates(),
+        #     goal_position_utm=Position(lat_long=(52.402637, 10.230300), psi=0.0).get_utm_coordinates(),
+        #     vehicle_id=9,
+        #     v2x_id=9,
+        #     vehicle_parameters_file = "obstacle.json",
+        # ),
+        
+        #start_position = Position(lat_long=(52.402773, 10.231041), psi=-3.0)
+        #goal_position = Position(lat_long=(52.401652, 10.224147), psi=0.0)
         
         # *create_simulated_vehicle(
         #     namespace="neighbor_lane_vehicle",  #can be turned so that it is partly in the lane of the ego vehicle
