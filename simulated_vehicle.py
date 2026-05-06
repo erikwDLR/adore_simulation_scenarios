@@ -17,6 +17,8 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from launch import Action
 from launch_ros.actions import Node
+from launch.substitutions import PathJoinSubstitution
+from launch_ros.substitutions import FindPackageShare
 
 import os
 import sys
@@ -77,6 +79,12 @@ def create_simulated_vehicle(
         "constant_brake": -1.0,
         "lookahead_time": 0.0
     }
+    
+    obstacle_avoidance_params_file = PathJoinSubstitution([
+        FindPackageShare("decision_maker"),
+        "config",
+        "obstacle_avoidance.yaml"
+    ])
 
     return [
         Node(
@@ -123,7 +131,9 @@ def create_simulated_vehicle(
             executable="decision_maker",
             name="decision_maker",
             namespace=namespace,
-            parameters=[
+            parameters=(
+                [obstacle_avoidance_params_file] if namespace == "ego_vehicle" else []
+            ) + [
                 {"planner_settings_keys": list(planner_params.keys())},
                 {"planner_settings_values": list(planner_params.values())},
                 {"vehicle_model_file": vehicle_parameters_folder + "/" + vehicle_parameters_file},
