@@ -55,15 +55,6 @@ def generate_launch_description():
         #     vehicle_parameters_file = "NGC.json",
         # ),
         
-<<<<<<< HEAD
-        # *create_simulated_vehicle(
-        #     namespace="lane_blocking_vehicle",
-        #     start_pose_utm=Position(lat_long=(52.402632, 10.230170), psi=2.7).get_utm_coordinates(),
-        #     goal_position_utm=Position(lat_long=(52.402632, 10.230170), psi=2.7).get_utm_coordinates(),
-        #     vehicle_id=2,
-        #     v2x_id=2,
-        # ),
-=======
         *create_simulated_vehicle(
             namespace="lane_blocking_vehicle",
             start_pose_utm=Position(lat_long=(52.402632, 10.230170), psi=2.3).get_utm_coordinates(),
@@ -71,27 +62,26 @@ def generate_launch_description():
             vehicle_id=2,
             v2x_id=2,
         ),
->>>>>>> cb5ae63 (object clustering)
         
-        *create_simulated_vehicle(
-            namespace="in_lane_right_obstacle",
-            start_pose_utm=Position(lat_long=(52.402639, 10.230170), psi=0.0).get_utm_coordinates(),
-            goal_position_utm=Position(lat_long=(52.402639, 10.230170), psi=0.0).get_utm_coordinates(),
-            #start_pose_utm=Position(lat_long=(52.402610, 10.230000), psi=0.0).get_utm_coordinates(),
-            #goal_position_utm=Position(lat_long=(52.402610, 10.230000), psi=0.0).get_utm_coordinates(),
-            vehicle_id=6,
-            v2x_id=6,
-            vehicle_parameters_file = "obstacle.json",
-        ),
+        # *create_simulated_vehicle(
+        #     namespace="in_lane_right_obstacle",
+        #     start_pose_utm=Position(lat_long=(52.402639, 10.230170), psi=0.0).get_utm_coordinates(),
+        #     goal_position_utm=Position(lat_long=(52.402639, 10.230170), psi=0.0).get_utm_coordinates(),
+        #     #start_pose_utm=Position(lat_long=(52.402610, 10.230000), psi=0.0).get_utm_coordinates(),
+        #     #goal_position_utm=Position(lat_long=(52.402610, 10.230000), psi=0.0).get_utm_coordinates(),
+        #     vehicle_id=6,
+        #     v2x_id=6,
+        #     vehicle_parameters_file = "obstacle.json",
+        # ),
         
-        *create_simulated_vehicle(
-            namespace="neighbor_lane_obstacle",
-            start_pose_utm=Position(lat_long=(52.402568, 10.230100), psi=0.0).get_utm_coordinates(),
-            goal_position_utm=Position(lat_long=(52.402568, 10.230100), psi=0.0).get_utm_coordinates(),
-            vehicle_id=8,
-            v2x_id=8,
-            vehicle_parameters_file = "obstacle.json",
-        ),
+        # *create_simulated_vehicle(
+        #     namespace="neighbor_lane_obstacle",
+        #     start_pose_utm=Position(lat_long=(52.402568, 10.230100), psi=0.0).get_utm_coordinates(),
+        #     goal_position_utm=Position(lat_long=(52.402568, 10.230100), psi=0.0).get_utm_coordinates(),
+        #     vehicle_id=8,
+        #     v2x_id=8,
+        #     vehicle_parameters_file = "obstacle.json",
+        # ),
         
         # *create_simulated_vehicle(
         #     namespace="neighbor_lane_obstacle",
@@ -103,14 +93,14 @@ def generate_launch_description():
         # ),
         
         
-        *create_simulated_vehicle(
-            namespace="in_lane_left_obstacle",
-            start_pose_utm=Position(lat_long=(52.402617, 10.230170), psi=0.0).get_utm_coordinates(),
-            goal_position_utm=Position(lat_long=(52.402617, 10.230170), psi=0.0).get_utm_coordinates(),
-            vehicle_id=7,
-            v2x_id=7,
-            vehicle_parameters_file = "obstacle.json",
-        ),
+        # *create_simulated_vehicle(
+        #     namespace="in_lane_left_obstacle",
+        #     start_pose_utm=Position(lat_long=(52.402617, 10.230170), psi=0.0).get_utm_coordinates(),
+        #     goal_position_utm=Position(lat_long=(52.402617, 10.230170), psi=0.0).get_utm_coordinates(),
+        #     vehicle_id=7,
+        #     v2x_id=7,
+        #     vehicle_parameters_file = "obstacle.json",
+        # ),
         
         # *create_simulated_vehicle(
         #     namespace="early_in_lane_left_obstacle",

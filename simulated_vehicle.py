@@ -32,8 +32,8 @@ vehicle_parameters_folder = os.path.abspath(os.path.join(launch_file_dir, "../as
 maps_folder = os.path.abspath(os.path.join(launch_file_dir, "../assets/tracks/"))
 odd_folder = os.path.abspath(os.path.join(launch_file_dir, "../assets/odd/"))
 
-path_shift_params_file = os.path.abspath(
-    os.path.join(launch_file_dir, "../assets/path_shift_params/path_shift_params.yaml")
+obstacle_avoidance_file = os.path.abspath(
+    os.path.join(launch_file_dir, "../../ros2_workspace/src/adore_ros2_nodes/decision_maker/config/obstacle_avoidance.yaml")
 )
 
 
@@ -132,7 +132,7 @@ def create_simulated_vehicle(
             name="decision_maker",
             namespace=namespace,
             parameters=[
-                path_shift_params_file,
+                obstacle_avoidance_file,
                 {"planner_settings_keys": list(planner_params.keys())},
                 {"planner_settings_values": list(planner_params.values())},
                 {"vehicle_model_file": vehicle_parameters_folder + "/" + vehicle_parameters_file},
