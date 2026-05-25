@@ -42,6 +42,7 @@ def generate_launch_description():
             goal_position_utm=goal_position.get_utm_coordinates(),
             vehicle_id=111,
             v2x_id=0,
+            map_file='circle50m.xodr',
         ),
         Node(
             package='sumo_bridge',
