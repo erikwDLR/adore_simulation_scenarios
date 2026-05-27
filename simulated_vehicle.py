@@ -32,8 +32,23 @@ vehicle_parameters_folder = os.path.abspath(os.path.join(launch_file_dir, "../as
 maps_folder = os.path.abspath(os.path.join(launch_file_dir, "../assets/tracks/"))
 odd_folder = os.path.abspath(os.path.join(launch_file_dir, "../assets/odd/"))
 
-obstacle_avoidance_file = os.path.abspath(
-    os.path.join(launch_file_dir, "../../ros2_workspace/src/adore_ros2_nodes/decision_maker/config/obstacle_avoidance.yaml")
+_obstacle_avoidance_candidates = [
+    os.path.abspath(
+        os.path.join(
+            launch_file_dir,
+            "../../ros2_workspace/src/src/adore_ros2_nodes/decision_maker/config/obstacle_avoidance.yaml",
+        )
+    ),
+    os.path.abspath(
+        os.path.join(
+            launch_file_dir,
+            "../../ros2_workspace/src/adore_ros2_nodes/decision_maker/config/obstacle_avoidance.yaml",
+        )
+    ),
+]
+obstacle_avoidance_file = next(
+    (path for path in _obstacle_avoidance_candidates if os.path.isfile(path)),
+    _obstacle_avoidance_candidates[0],
 )
 
 
@@ -54,7 +69,7 @@ def create_simulated_vehicle(
 
     planner_params = {
         "dt": 0.1,
-        "horizon_steps": 60, #40,
+        "horizon_steps": 40,
         "lane_error": 0.3,
         "long_error": 0.01,
         "speed_error": 1.0,
@@ -168,4 +183,3 @@ def create_simulated_vehicle(
             ],
         ),
     ]
-
