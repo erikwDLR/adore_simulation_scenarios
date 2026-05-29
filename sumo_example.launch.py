@@ -22,26 +22,29 @@ from position import Position
 from simulated_vehicle import create_simulated_vehicle
 from visualizer import create_visualizer
 
-start_position = Position(xy=(50.0, 0.0), psi=3.14/2)
-goal_position  = Position(xy=(-50.0, 0.0))
-
-SOURCE_DIRECTORY = os.environ["SOURCE_DIRECTORY"]
+SOURCE_DIRECTORY      = os.environ["SOURCE_DIRECTORY"]
 SUMO_CONFIG_DIRECTORY = os.environ["SUMO_CONFIG_DIRECTORY"]
-SUMO_CONFIG_FILE = "example_scenario/osm.sumocfg"
-SUMO_CONFIG_PATH = os.path.join(SOURCE_DIRECTORY, SUMO_CONFIG_DIRECTORY, SUMO_CONFIG_FILE)
+SUMO_CONFIG_PATH      = os.path.join(SOURCE_DIRECTORY, SUMO_CONFIG_DIRECTORY, "example_scenario/osm.sumocfg")
+GUI_SETTINGS_PATH     = os.path.join(SOURCE_DIRECTORY, SUMO_CONFIG_DIRECTORY, "gui_settings.xml")
+
+EGO_START      = Position(lat_long=(52.314331, 10.53793), psi=3.14)
+EGO_GOAL       = Position(lat_long=(52.31463, 10.55909), psi=0.0)
+EGO_VEHICLE_ID = 111
 
 def generate_launch_description():
+    ego_utm = EGO_START.get_utm_coordinates()  # (x, y, zone, hemisphere, psi)
+    ego_lat, ego_lon, ego_psi = EGO_START.get_lat_long_coordinates()
     return LaunchDescription([
         *create_visualizer(
             whitelist=["ego_vehicle"],
-            visualization_offset=Position(lat_long=(52.314331, 10.53793), psi=3.14).get_utm_coordinates(),
+            visualization_offset=ego_utm,
         ),
         *create_simulated_vehicle(
             namespace="ego_vehicle",
-            start_pose_utm=Position(lat_long=(52.314331, 10.53793), psi=3.14).get_utm_coordinates(),
-            goal_position_utm=Position(lat_long=(52.31463, 10.55909), psi=0.0).get_utm_coordinates(),
-            vehicle_id=111,
-            v2x_id=111,
+            start_pose_utm=ego_utm,
+            goal_position_utm=EGO_GOAL.get_utm_coordinates(),
+            vehicle_id=EGO_VEHICLE_ID,
+            v2x_id=EGO_VEHICLE_ID,
         ),
         Node(
             package='sumo_bridge',
@@ -50,11 +53,16 @@ def generate_launch_description():
             name='sumo_bridge',
             output='screen',
             parameters=[
-               {"sumo_config_file": SUMO_CONFIG_PATH},
-               {"use_gui": False}, # True is currently unsupported 
-               {"utm_zone": Position(lat_long=(52.314331, 10.53793), psi=3.14).get_utm_coordinates()[2]},
-               {"utm_letter": Position(lat_long=(52.314331, 10.53793), psi=3.14).get_utm_coordinates()[3]}
-
+                {"sumo_config_file":      SUMO_CONFIG_PATH},
+                {"use_gui":               True},
+                {"gui_settings_file":     GUI_SETTINGS_PATH},
+                {"gui_zoom":              5000.0},
+                {"gui_follow_ego":        True},
+                {"ego_tracking_id":       EGO_VEHICLE_ID},
+                {"ego_vehicle_color":     "255,255,255"},
+                {"ego_start_position":    f"{ego_lat},{ego_lon},{ego_psi}"},
+                {"initial_traffic_count": 3},
+                {"initial_traffic_spacing": 20.0},
             ],
         ),
     ])
