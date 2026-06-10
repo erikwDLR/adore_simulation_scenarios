@@ -43,17 +43,17 @@ def generate_launch_description():
             visualization_offset=start_position.get_utm_coordinates(),
         ),
         
-        # *create_simulated_vehicle(
-        #     namespace="oncoming_vehicle",
-        #     #start_pose_utm=Position(lat_long=(52.402311, 10.228955), psi=0.0).get_utm_coordinates(),
-        #     #start_pose_utm=Position(lat_long=(52.402251, 10.228955), psi=0.0).get_utm_coordinates(),
-        #     #goal_position_utm=Position(lat_long=(52.402901, 10.231940), psi=0.0).get_utm_coordinates(),
-        #     start_pose_utm=Position(lat_long=(52.402773, 10.231041), psi=-3.0).get_utm_coordinates(),
-        #     goal_position_utm=Position(lat_long=(52.401652, 10.224147), psi=0.0).get_utm_coordinates(),
-        #     vehicle_id=99,
-        #     v2x_id=1,
-        #     vehicle_parameters_file = "NGC.json",
-        # ),
+        *create_simulated_vehicle(
+            namespace="oncoming_vehicle",
+            #start_pose_utm=Position(lat_long=(52.402311, 10.228955), psi=0.0).get_utm_coordinates(),
+            #start_pose_utm=Position(lat_long=(52.402251, 10.228955), psi=0.0).get_utm_coordinates(),
+            #goal_position_utm=Position(lat_long=(52.402901, 10.231940), psi=0.0).get_utm_coordinates(),
+            start_pose_utm=Position(lat_long=(52.402773, 10.231041), psi=-3.0).get_utm_coordinates(),
+            goal_position_utm=Position(lat_long=(52.401652, 10.224147), psi=0.0).get_utm_coordinates(),
+            vehicle_id=99,
+            v2x_id=1,
+            vehicle_parameters_file = "test_vehicle.json",
+        ),
         
         # *create_simulated_vehicle(
         #     namespace="parked_vehicle_1",  #can be turned so that it is partly in the lane of the ego vehicle
@@ -73,10 +73,25 @@ def generate_launch_description():
             vehicle_parameters_file = "NGC.json",
         ),
          
-                 *create_simulated_vehicle(
-            namespace="parked_vehicle_3",  #can be turned so that it is partly in the lane of the ego vehicle
-            start_pose_utm=Position(lat_long=(52.402572, 10.230100), psi=0.30).get_utm_coordinates(),
-            goal_position_utm=Position(lat_long=(52.402572, 10.230100), psi=0.30).get_utm_coordinates(),
+                 
+        #  *create_simulated_vehicle(
+        #     namespace="parked_vehicle_3",  #can be turned so that it is partly in the lane of the ego vehicle
+        #     start_pose_utm=Position(lat_long=(52.402533, 10.229900), psi=0.30).get_utm_coordinates(),
+        #     goal_position_utm=Position(lat_long=(52.402533, 10.229900), psi=0.30).get_utm_coordinates(),
+        #     vehicle_id=90,
+        #     v2x_id=90,
+        #     vehicle_parameters_file = "NGC.json",
+        #     #vehicle_parameters_file = "obstacle.json",
+        # ),
+         
+         *create_simulated_vehicle(
+            namespace="parked_vehicle_4",  #can be turned so that it is partly in the lane of the ego vehicle
+            #start_pose_utm=Position(lat_long=(52.402572, 10.230100), psi=0.30).get_utm_coordinates(),
+            #goal_position_utm=Position(lat_long=(52.402572, 10.230100), psi=0.30).get_utm_coordinates(),
+            #start_pose_utm=Position(lat_long=(52.402560, 10.230100), psi=0.30).get_utm_coordinates(),
+            #goal_position_utm=Position(lat_long=(52.402560, 10.230100), psi=0.30).get_utm_coordinates(),
+            start_pose_utm=Position(lat_long=(52.402580, 10.230100), psi=0.30).get_utm_coordinates(),
+            goal_position_utm=Position(lat_long=(52.402580, 10.230100), psi=0.30).get_utm_coordinates(),
             vehicle_id=89,
             v2x_id=89,
             vehicle_parameters_file = "NGC.json",

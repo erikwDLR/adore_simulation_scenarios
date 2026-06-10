@@ -22,6 +22,9 @@ from position import Position
 from simulated_vehicle import create_simulated_vehicle
 from visualizer import create_visualizer
 
+# start_position = Position(lat_long=(52.291434, 10.513898), psi=-3.0)
+# goal_position = Position(lat_long=(52.291207, 10.511044), psi=-3.0)
+
 start_position = Position(lat_long=(52.291613, 10.516043), psi=-3.04)
 goal_position = Position(lat_long=(52.292296, 10.516745), psi=0.0)
 
@@ -33,9 +36,39 @@ def generate_launch_description():
             goal_position_utm=goal_position.get_utm_coordinates(),
             vehicle_id=111,
             v2x_id=0,
+            map_file="de_bs_borders_wfs.r2sr",
         ),
+        
         *create_visualizer(
             whitelist=["ego_vehicle"],
             visualization_offset=start_position.get_utm_coordinates(),
-        )
+        ),
+
+        *create_simulated_vehicle(
+            namespace="parked_vehicle_1",
+            start_pose_utm=Position(lat_long=(52.291343, 10.512557), psi=-3.0).get_utm_coordinates(),
+            goal_position_utm=Position(lat_long=(52.291343, 10.512557), psi=-3.0).get_utm_coordinates(),
+            vehicle_id=1,
+            v2x_id=1,
+            vehicle_parameters_file = "NGC.json",
+        ),
+
+        *create_simulated_vehicle(
+            namespace="parked_vehicle_2",
+            start_pose_utm=Position(lat_long=(52.291334, 10.512468), psi=-3.0).get_utm_coordinates(),
+            goal_position_utm=Position(lat_long=(52.291334, 10.512468), psi=-3.0).get_utm_coordinates(),
+            vehicle_id=2,
+            v2x_id=2,
+            vehicle_parameters_file = "NGC.json",
+        ),
+
+        # *create_simulated_vehicle(
+        #     namespace="oncoming_vehicle",
+        #     start_pose_utm=Position(lat_long=(52.291177, 10.511060), psi=0.25).get_utm_coordinates(),
+        #     goal_position_utm=Position(lat_long=(52.291399, 10.513708), psi=0.25).get_utm_coordinates(),
+        #     vehicle_id=3,
+        #     v2x_id=3,
+        #     vehicle_parameters_file = "NGC.json",
+        #     map_file="de_bs_borders_wfs.r2sr",
+        # ),
     ])
