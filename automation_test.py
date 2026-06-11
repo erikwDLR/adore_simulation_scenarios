@@ -76,8 +76,8 @@ baseline_params = {
     "front_clearance": 7.0,
     "rear_clearance": 7.0,
     "stop_before_obstacle": 8.0,
-    "max_speed_during_avoidance": 2.7,
-    "max_object_ahead": 40.0,
+    "max_speed_during_avoidance": 2.78,
+    "max_object_ahead": 60.0,
     "lateral_candidate_extra_steps": 1,
     "lateral_candidate_extra_step": 0.30,
 
@@ -89,12 +89,12 @@ baseline_params = {
 
 
 single_parked_sweep = {
-    "side_clearance": [0.5, 0.8, 1.0],
+    "side_clearance": [0.5, 0.8, 1.0, 1.5],
     "front_clearance": [5.0, 7.0, 10.0],
     "rear_clearance": [5.0, 7.0, 10.0],
     "stop_before_obstacle": [6.0, 8.0, 11.0],
-    "max_speed_during_avoidance": [2.0, 2.7, 3.5, 4.2],
-    "max_object_ahead": [30.0, 40.0, 50.0],
+    "max_speed_during_avoidance": [1.389, 2.78, 4.167, 5.556],
+    "max_object_ahead": [40.0, 60.0, 80.0],
     "lateral_candidate_extra_steps": [0, 1, 2],
     "lateral_candidate_extra_step": [0.20, 0.30, 0.40],
 }

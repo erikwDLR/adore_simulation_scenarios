@@ -87,7 +87,8 @@ controller_pid_params = {
 
 #start_position = Position(lat_long=(52.291613, 10.516043), psi=-3.04)
 #goal_position = Position(lat_long=(52.291207, 10.511044), psi=0.0)
-start_position = Position(lat_long=(52.291543, 10.515118), psi=-3.04)
+#start_position = Position(lat_long=(52.291543, 10.515118), psi=-3.04)
+start_position = Position(lat_long=(52.291498, 10.514635), psi=-3.04)
 goal_position = Position(lat_long=(52.290905, 10.508069), psi=0.0)
 #goal_position = Position(lat_long=(52.291074, 10.509670), psi=0.0)
 start_pose_utm=start_position.get_utm_coordinates()
@@ -175,7 +176,7 @@ def compute_second_parked_vehicle_position(
 parked_vehicle_length_m = 4.5
 
 # Desired free gap between the vehicle bodies
-free_gap_between_parked_vehicles_m = 12.0
+free_gap_between_parked_vehicles_m = 16.0
 
 # Fixed position of first parked vehicle
 parked_1_lat = 52.291328132295035

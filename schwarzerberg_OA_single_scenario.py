@@ -86,7 +86,7 @@ controller_pid_params = {
 
 #start_position = Position(lat_long=(52.291613, 10.516043), psi=-3.04)
 #goal_position = Position(lat_long=(52.291207, 10.511044), psi=0.0)
-start_position = Position(lat_long=(52.291543, 10.515118), psi=-3.04)
+start_position = Position(lat_long=(52.291498, 10.514635), psi=-3.04)
 goal_position = Position(lat_long=(52.290905, 10.508069), psi=0.0)
 #goal_position = Position(lat_long=(52.291074, 10.509670), psi=0.0)
 start_pose_utm=start_position.get_utm_coordinates()
