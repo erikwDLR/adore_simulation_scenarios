@@ -60,8 +60,8 @@ def create_simulated_vehicle(
     v2x_id: int,
     vehicle_parameters_file: str = "NGC.json",
     #vehicle_parameters_file: str = "obstacle.json",
-    #map_file: str = "de_bs_borders_wfs.r2sr",
-    map_file: str = "r2s_flightfield_edemissen_26022026_25832.r2sr",
+    map_file: str = "de_bs_borders_wfs.r2sr",
+    #map_file: str = "r2s_flightfield_edemissen_26022026_25832.r2sr",
     controllable: bool = True
 ) -> List[Action]:
 
@@ -98,7 +98,7 @@ def create_simulated_vehicle(
         "acceleration_threshold": 0.25,
         "velocity_threshold": 0.25,
         "constant_brake": -1.0,
-        "lookahead_time": 0.0
+        "lookahead_time": 0.3
     }
 
     return [

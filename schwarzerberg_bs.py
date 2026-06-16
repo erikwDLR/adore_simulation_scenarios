@@ -62,13 +62,13 @@ def generate_launch_description():
             vehicle_parameters_file = "NGC.json",
         ),
 
-        # *create_simulated_vehicle(
-        #     namespace="oncoming_vehicle",
-        #     start_pose_utm=Position(lat_long=(52.291177, 10.511060), psi=0.25).get_utm_coordinates(),
-        #     goal_position_utm=Position(lat_long=(52.291399, 10.513708), psi=0.25).get_utm_coordinates(),
-        #     vehicle_id=3,
-        #     v2x_id=3,
-        #     vehicle_parameters_file = "NGC.json",
-        #     map_file="de_bs_borders_wfs.r2sr",
-        # ),
+        *create_simulated_vehicle(
+            namespace="oncoming_vehicle",
+            start_pose_utm=Position(lat_long=(52.291177, 10.511060), psi=0.25).get_utm_coordinates(),
+            goal_position_utm=Position(lat_long=(52.291399, 10.513708), psi=0.25).get_utm_coordinates(),
+            vehicle_id=3,
+            v2x_id=3,
+            vehicle_parameters_file = "NGC.json",
+            map_file="de_bs_borders_wfs.r2sr",
+        ),
     ])

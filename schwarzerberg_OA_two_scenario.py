@@ -82,7 +82,7 @@ controller_pid_params = {
     "acceleration_threshold": 0.25,
     "velocity_threshold": 0.25,
     "constant_brake": -1.0,
-    "lookahead_time": 0.0
+    "lookahead_time": 0.3
 }
 
 #start_position = Position(lat_long=(52.291613, 10.516043), psi=-3.04)
