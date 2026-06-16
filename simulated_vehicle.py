@@ -19,6 +19,8 @@ from launch import Action
 from launch_ros.actions import Node
 from pathlib import Path
 
+from position import Waypoint
+
 import os
 import sys
 # import utm
@@ -54,8 +56,8 @@ obstacle_avoidance_file = next(
 
 def create_simulated_vehicle(
     namespace: str,
-    start_pose_utm: Tuple[float, float, int, str, float],
-    goal_position_utm: Tuple[float, float, int, str, float],
+    start_position_utm: Tuple[float, float, int, str, float],
+    goals: List[Waypoint],
     vehicle_id: int,
     v2x_id: int,
     vehicle_parameters_file: str = "NGC.json",
@@ -101,6 +103,9 @@ def create_simulated_vehicle(
         "lookahead_time": 0.3
     }
 
+    goal_strings = [f"{x},{y},{stop}"
+                    for x, y, stop in (wp.to_goal_tuple() for wp in goals)]
+
     return [
         Node(
             package="simulated_vehicle",
@@ -108,11 +113,11 @@ def create_simulated_vehicle(
             name="simulated_vehicle",
             namespace=namespace,
             parameters=[
-                {"set_start_utm_position_x": start_pose_utm[0]},
-                {"set_start_utm_position_y": start_pose_utm[1]},
-                {"set_start_utm_zone_number": start_pose_utm[2]},
-                {"set_start_utm_zone_letter": start_pose_utm[3]},
-                {"set_start_psi": start_pose_utm[4]},
+                {"set_start_utm_position_x": start_position_utm[0]},
+                {"set_start_utm_position_y": start_position_utm[1]},
+                {"set_start_utm_zone_number": start_position_utm[2]},
+                {"set_start_utm_zone_letter": start_position_utm[3]},
+                {"set_start_psi": start_position_utm[4]},
                 {"vehicle_id": vehicle_id},
                 {"v2x_id": v2x_id},
                 {"controllable": controllable},
@@ -135,8 +140,7 @@ def create_simulated_vehicle(
             namespace=namespace,
             parameters=[
                 {"map file": maps_folder + "/" + map_file},  # kept literal key as in original
-                {"goal_position_x": goal_position_utm[0]},
-                {"goal_position_y": goal_position_utm[1]},
+                {"goals": goal_strings},
                 {"local_map_size": 100.0},
                 # {"request_assistance_polygon": None},
             ],
