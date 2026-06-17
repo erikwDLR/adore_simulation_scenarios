@@ -19,7 +19,7 @@ import os
 import math
 sys.path.append(os.path.dirname(__file__)) # this line is very importatnt to find the helper functions
 
-from position import Position
+from position import Position, Waypoint
 from simulated_vehicle import create_simulated_vehicle
 from visualizer import create_visualizer
 
@@ -93,6 +93,10 @@ goal_position = Position(lat_long=(52.290905, 10.508069), psi=0.0)
 #goal_position = Position(lat_long=(52.291074, 10.509670), psi=0.0)
 start_pose_utm=start_position.get_utm_coordinates()
 goal_position_utm=goal_position.get_utm_coordinates()
+# mission_control reads the goal via the "goals" parameter (list of "x,y,stop"
+# strings); goal_position_x/y are no longer read after the develop merge.
+goal_strings = [f"{x},{y},{stop}"
+                for x, y, stop in (wp.to_goal_tuple() for wp in [Waypoint(goal_position)])]
 vehicle_id=111
 v2x_id=0
 
@@ -294,8 +298,7 @@ def generate_launch_description():
             namespace="ego_vehicle",
             parameters=[
                 {"map file": maps_folder + "/" + "de_bs_borders_wfs.r2sr"},  # kept literal key as in original
-                {"goal_position_x": goal_position_utm[0]},
-                {"goal_position_y": goal_position_utm[1]},
+                {"goals": goal_strings},
                 {"local_map_size": 100.0},
                 # {"request_assistance_polygon": None},
             ],
