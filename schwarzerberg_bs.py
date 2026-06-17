@@ -18,7 +18,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(__file__)) # this line is very importatnt to find the helper functions
 
-from position import Position
+from position import Position, Waypoint
 from simulated_vehicle import create_simulated_vehicle
 from visualizer import create_visualizer
 
@@ -32,8 +32,8 @@ def generate_launch_description():
     return LaunchDescription([
         *create_simulated_vehicle(
             namespace="ego_vehicle",
-            start_pose_utm=start_position.get_utm_coordinates(),
-            goal_position_utm=goal_position.get_utm_coordinates(),
+            start_position_utm=start_position.get_utm_coordinates(),
+            goals=[Waypoint(goal_position)],
             vehicle_id=111,
             v2x_id=0,
             map_file="de_bs_borders_wfs.r2sr",
@@ -46,8 +46,8 @@ def generate_launch_description():
 
         *create_simulated_vehicle(
             namespace="parked_vehicle_1",
-            start_pose_utm=Position(lat_long=(52.291343, 10.512557), psi=-3.0).get_utm_coordinates(),
-            goal_position_utm=Position(lat_long=(52.291343, 10.512557), psi=-3.0).get_utm_coordinates(),
+            start_position_utm=Position(lat_long=(52.291343, 10.512557), psi=-3.0).get_utm_coordinates(),
+            goals=[Waypoint(Position(lat_long=(52.291343, 10.512557), psi=-3.0))],
             vehicle_id=1,
             v2x_id=1,
             vehicle_parameters_file = "NGC.json",
@@ -55,17 +55,26 @@ def generate_launch_description():
 
         *create_simulated_vehicle(
             namespace="parked_vehicle_2",
-            start_pose_utm=Position(lat_long=(52.291334, 10.512468), psi=-3.0).get_utm_coordinates(),
-            goal_position_utm=Position(lat_long=(52.291334, 10.512468), psi=-3.0).get_utm_coordinates(),
+            start_position_utm=Position(lat_long=(52.291334, 10.512360), psi=-3.0).get_utm_coordinates(),
+            goals=[Waypoint(Position(lat_long=(52.291334, 10.512360), psi=-3.0))],
             vehicle_id=2,
             v2x_id=2,
             vehicle_parameters_file = "NGC.json",
         ),
+        
+        # *create_simulated_vehicle(
+        #     namespace="obastacle",
+        #     start_position_utm=Position(lat_long=(52.291334, 10.512468), psi=-3.0).get_utm_coordinates(),
+        #     goals=[Waypoint(Position(lat_long=(52.291334, 10.512468), psi=-3.0))],
+        #     vehicle_id=3,
+        #     v2x_id=3,
+        #     vehicle_parameters_file = "obstacle.json",
+        # ),
 
         *create_simulated_vehicle(
             namespace="oncoming_vehicle",
-            start_pose_utm=Position(lat_long=(52.291177, 10.511060), psi=0.25).get_utm_coordinates(),
-            goal_position_utm=Position(lat_long=(52.291399, 10.513708), psi=0.25).get_utm_coordinates(),
+            start_position_utm=Position(lat_long=(52.291177, 10.511060), psi=0.25).get_utm_coordinates(),
+            goals=[Waypoint(Position(lat_long=(52.291399, 10.513708), psi=0.25))],
             vehicle_id=3,
             v2x_id=3,
             vehicle_parameters_file = "NGC.json",
