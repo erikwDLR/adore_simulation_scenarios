@@ -17,6 +17,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from launch import Action
 from launch_ros.actions import Node
+from pathlib import Path
 
 from position import Waypoint
 
@@ -33,6 +34,26 @@ vehicle_parameters_folder = os.path.abspath(os.path.join(launch_file_dir, "../as
 maps_folder = os.path.abspath(os.path.join(launch_file_dir, "../assets/tracks/"))
 odd_folder = os.path.abspath(os.path.join(launch_file_dir, "../assets/odd/"))
 
+_obstacle_avoidance_candidates = [
+    os.path.abspath(
+        os.path.join(
+            launch_file_dir,
+            "../../ros2_workspace/src/src/adore_ros2_nodes/decision_maker/config/obstacle_avoidance.yaml",
+        )
+    ),
+    os.path.abspath(
+        os.path.join(
+            launch_file_dir,
+            "../../ros2_workspace/src/adore_ros2_nodes/decision_maker/config/obstacle_avoidance.yaml",
+        )
+    ),
+]
+obstacle_avoidance_file = next(
+    (path for path in _obstacle_avoidance_candidates if os.path.isfile(path)),
+    _obstacle_avoidance_candidates[0],
+)
+
+
 def create_simulated_vehicle(
     namespace: str,
     start_position_utm: Tuple[float, float, int, str, float],
@@ -40,7 +61,9 @@ def create_simulated_vehicle(
     vehicle_id: int,
     v2x_id: int,
     vehicle_parameters_file: str = "NGC.json",
+    #vehicle_parameters_file: str = "obstacle.json",
     map_file: str = "de_bs_borders_wfs.r2sr",
+    #map_file: str = "r2s_flightfield_edemissen_26022026_25832.r2sr",
     controllable: bool = True
 ) -> List[Action]:
 
@@ -128,12 +151,27 @@ def create_simulated_vehicle(
             name="decision_maker",
             namespace=namespace,
             parameters=[
+                obstacle_avoidance_file,
                 {"planner_settings_keys": list(planner_params.keys())},
                 {"planner_settings_values": list(planner_params.values())},
                 {"vehicle_model_file": vehicle_parameters_folder + "/" + vehicle_parameters_file},
                 {"v2x_id": v2x_id},
             ],
         ),
+        
+        # Node(
+        #     package="decision_maker",
+        #     executable="decision_maker",
+        #     name="decision_maker",
+        #     namespace=namespace,
+        #     parameters=[
+        #         params_file,
+        #         {"planner_settings_keys": list(planner_params.keys())},
+        #         {"planner_settings_values": list(planner_params.values())},
+        #         {"vehicle_model_file": vehicle_parameters_folder + "/" + vehicle_parameters_file},
+        #         {"v2x_id": v2x_id},
+        #     ],
+        # ),
         Node(
             package="trajectory_tracker",
             executable="trajectory_tracker",
@@ -149,4 +187,3 @@ def create_simulated_vehicle(
             ],
         ),
     ]
-
