@@ -98,7 +98,7 @@ def create_simulated_vehicle(
         "dt": 0.05,
         "steering_comfort": 10000.25,
         "acceleration_comfort": 400.0,
-        "acceleration_threshold": 0.25,
+        "acceleration_threshold": 0.4,
         "velocity_threshold": 0.25,
         "constant_brake": -1.0,
         "lookahead_time": 0.3

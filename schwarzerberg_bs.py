@@ -25,8 +25,11 @@ from visualizer import create_visualizer
 # start_position = Position(lat_long=(52.291434, 10.513898), psi=-3.0)
 # goal_position = Position(lat_long=(52.291207, 10.511044), psi=-3.0)
 
-start_position = Position(lat_long=(52.291613, 10.516043), psi=-3.04)
-goal_position = Position(lat_long=(52.292296, 10.516745), psi=0.0)
+# start_position = Position(lat_long=(52.291613, 10.516043), psi=-3.04)
+# goal_position = Position(lat_long=(52.292296, 10.516745), psi=0.0)
+
+start_position = Position(lat_long=(52.291498, 10.514635), psi=-3.04)
+goal_position = Position(lat_long=(52.290905, 10.508069), psi=0.0)
 
 def generate_launch_description():
     return LaunchDescription([
@@ -37,6 +40,8 @@ def generate_launch_description():
             vehicle_id=111,
             v2x_id=0,
             map_file="de_bs_borders_wfs.r2sr",
+            max_speed=8.333,  # 30 km/h
+            #max_speed=13.889,  # 50 km/h
         ),
         
         *create_visualizer(
@@ -73,11 +78,14 @@ def generate_launch_description():
 
         *create_simulated_vehicle(
             namespace="oncoming_vehicle",
-            start_position_utm=Position(lat_long=(52.291177, 10.511060), psi=0.25).get_utm_coordinates(),
+            start_position_utm=Position(lat_long=(52.291177, 10.511060), psi=0.0).get_utm_coordinates(),
             goals=[Waypoint(Position(lat_long=(52.291399, 10.513708), psi=0.25))],
             vehicle_id=3,
             v2x_id=3,
             vehicle_parameters_file = "NGC.json",
             map_file="de_bs_borders_wfs.r2sr",
+            #max_speed=13.889,  # 50 km/h
+            max_speed= 4.0,  #
+            #max_speed= 6.0,  
         ),
     ])
