@@ -40,8 +40,8 @@ def generate_launch_description():
             vehicle_id=111,
             v2x_id=0,
             map_file="de_bs_borders_wfs.r2sr",
-            #max_speed=8.333,  # 30 km/h
-            #max_speed=13.889,  # 50 km/h
+            #max_speed= 8.333,  # 30 km/h
+            max_speed=13.889,  # 50 km/h
         ),
         
         *create_visualizer(
@@ -58,14 +58,14 @@ def generate_launch_description():
             vehicle_parameters_file = "NGC.json",
         ),
 
-        *create_simulated_vehicle(
-            namespace="parked_vehicle_2",
-            start_position_utm=Position(lat_long=(52.291334, 10.512360), psi=-3.0).get_utm_coordinates(),
-            goals=[Waypoint(Position(lat_long=(52.291334, 10.512360), psi=-3.0))],
-            vehicle_id=2,
-            v2x_id=2,
-            vehicle_parameters_file = "NGC.json",
-        ),
+        # *create_simulated_vehicle(
+        #     namespace="parked_vehicle_2",
+        #     start_position_utm=Position(lat_long=(52.291334, 10.512360), psi=-3.0).get_utm_coordinates(),
+        #     goals=[Waypoint(Position(lat_long=(52.291334, 10.512360), psi=-3.0))],
+        #     vehicle_id=2,
+        #     v2x_id=2,
+        #     vehicle_parameters_file = "NGC.json",
+        # ),
         
         # *create_simulated_vehicle(
         #     namespace="obastacle",
@@ -85,7 +85,7 @@ def generate_launch_description():
             vehicle_parameters_file = "NGC.json",
             map_file="de_bs_borders_wfs.r2sr",
             #max_speed=13.889,  # 50 km/h
-            #max_speed= 4.0,  #
+            max_speed= 5.0,  #
             #max_speed= 6.0,  
         ),
     ])
